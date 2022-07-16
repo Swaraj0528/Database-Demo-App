@@ -9,7 +9,10 @@ import com.database.model.Admin;
 import com.database.repo.AdminRepo;
 import com.database.service.AdminService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class AdminContoller {
 	
 	@Autowired
@@ -21,11 +24,12 @@ public class AdminContoller {
 	public String addAdmin() {
 		
 		Admin admin = new Admin();
+		log.info("Here addAdmin Method Starts");
 		//admin.setEmail("Hello@gmail.com");
 		//admin.setPassoword(hashPassword("Admin123"));
 		//adminService.saveAdminData(admin);
 		Admin findById = adminRepo.SearchByEmail("Hello@gmail.com");
-		
+		log.info("Admin User Name:{}",findById.getEmail());
 		checkPass("Admin123",findById.getPassoword());
 		return "admin addded";
 		
